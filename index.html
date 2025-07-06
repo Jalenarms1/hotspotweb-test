@@ -11,30 +11,37 @@
     <button id="openApp">Open in App</button>
 
     <script>
-    let didRedirect = false
+    let canRedirect = false
 
-    document.getElementById("openApp").onclick = function() {
-        const currUrlQuery = window.location.search;
-        const appSchemaUrl = `hotspotlive://${currUrlQuery.includes("group") ? "open-group" : "open-event"}${currUrlQuery}`;
-        const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402";
+        document.getElementById("openApp").onclick = function() {
+            const currUrlQuery = window.location.search;
+            const appSchemaUrl = `hotspotlive://${currUrlQuery.includes("group") ? "open-group" : "open-event"}${currUrlQuery}`;
+            const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402";
 
-        // Try to open app
-        try {
-            window.location = appSchemaUrl;
-
-            didRedirect = true
-        }
-        catch {
-            didRedirect = false
-        }
-        
-        setTimeout(() => {
-            if(!didRedirect) {
-                window.location = appStoreUrl;
-
+            // Try to open app
+            try {
+                new URL(appSchemaUrl)
+                
+                canRedirect = true
             }
-        }, 1500);
-    };
+            catch {
+                canRedirect = false
+            }
+            if(canRedirect)
+            {
+                window.location = appSchemaUrl;
+
+            } else {
+
+                setTimeout(() => {
+                    if(!canRedirect) {
+                        window.location = appStoreUrl;
+    
+                    }
+                }, 1500);
+            }
+
+        };
 </script>
 </body>
 </html>
