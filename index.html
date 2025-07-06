@@ -11,6 +11,8 @@
     <button id="openApp">Open in App</button>
 
     <script>
+    let didRedirect = false
+
     document.getElementById("openApp").onclick = function() {
         const currUrlQuery = window.location.search;
         const appSchemaUrl = `hotspotlive://${currUrlQuery.includes("group") ? "open-group" : "open-event"}${currUrlQuery}`;
@@ -19,14 +21,19 @@
         // Try to open app
         try {
             window.location = appSchemaUrl;
-            
-            setTimeout(() => {
-                window.location = appStoreUrl;
-            }, 2000);
+
+            didRedirect = true
         }
         catch {
-
+            didRedirect = false
         }
+        
+        setTimeout(() => {
+            if(!didRedirect) {
+                window.location = appStoreUrl;
+
+            }
+        }, 1500);
     };
 </script>
 </body>
