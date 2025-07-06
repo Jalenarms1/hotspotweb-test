@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <p class="status-text">Loading... updated</p>
+    <p class="status-text">Loading...</p>
     
     <script>
         window.onload = () => {
@@ -24,8 +24,11 @@
 
             const currentTime = Date.now()
             try {
-                new URL(appSchemaUrl)
-                window.location.href = appSchemaUrl
+                setTimeout(() => {
+                    new URL(appSchemaUrl)
+                    window.location.href = appSchemaUrl
+
+                }, 1000)
             }
             catch {
                 window.location.href = appStoreUrl
