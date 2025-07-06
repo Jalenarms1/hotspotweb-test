@@ -21,16 +21,21 @@
             const appSchemaUrl = `hotspotlive://${currUrlQuery.includes("group") ? "open-group" : "open-event"}${currUrlQuery}`
             const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402"
             console.log(currUrlQuery)
-
+            
             const currentTime = Date.now()
             window.location.href = appSchemaUrl
             setTimeout(() => {
                 const elapsed = Date.now() - currentTime
                 if(elapsed < 1500) {
-                    window.location.href = appStoreUrl
                     return
                 }
             }, 2000)
+        }
+        
+        window.onerror = () => {
+            const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402"
+            window.location.href = appStoreUrl
+
         }
     </script>
 </body>
