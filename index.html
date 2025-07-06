@@ -10,6 +10,14 @@
     <p class="status-text">Loading...</p>
     
     <script>
+        function isValidUrl(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
         window.onload = () => {
             const currUrlQuery = window.location.search
             
@@ -23,20 +31,18 @@
             console.log(currUrlQuery)
             
             const currentTime = Date.now()
-            window.location.href = appStoreUrl
-            setTimeout(() => {
-                const elapsed = Date.now() - currentTime
-                if(elapsed < 1500) {
-                    return
-                }
-            }, 2000)
-        }
-        
-        window.onerror = () => {
-            const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402"
-            window.location.href = appStoreUrl
+            if(isValidUrl(appSchemaUrl))
+            {
+                window.location.href = appSchemaUrl
+
+            } else {
+                window.location.href = appStoreUrl
+
+            }
 
         }
+        
+        
     </script>
 </body>
 </html>
