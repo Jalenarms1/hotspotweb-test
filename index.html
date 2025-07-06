@@ -31,7 +31,7 @@
             console.log(currUrlQuery)
             
             const currentTime = Date.now()
-            fetch(appSchemaUrl)
+            fetch(appSchemaUrl, {method: "GET"})
                 .then(resp => {
                     console.log(resp.status == 404);
                     if(resp.status == 404) {
@@ -43,6 +43,7 @@
                     }
                 })
                 .catch(err => {
+                    console.log(err)
                     window.location.href = appStoreUrl
 
                 })
