@@ -11,7 +11,7 @@
     <button id="openApp">Open in App</button>
 
     <script>
-    let canRedirect = false
+        let canRedirect = false
 
         document.getElementById("openApp").onclick = function() {
             const currUrlQuery = window.location.search;
@@ -19,27 +19,10 @@
             const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402";
 
             // Try to open app
-            try {
-                new URL(appSchemaUrl)
-                
-                canRedirect = true
-            }
-            catch {
-                canRedirect = false
-            }
-            if(canRedirect)
-            {
-                window.location = appSchemaUrl;
-
-            } else {
-
-                setTimeout(() => {
-                    if(!canRedirect) {
-                        window.location = appStoreUrl;
-    
-                    }
-                }, 1500);
-            }
+            window.location = appSchemaUrl;
+            setTimeout(() => {
+                window.location = appStoreUrl;
+            }, 1500);
 
         };
 </script>
