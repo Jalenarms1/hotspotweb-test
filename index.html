@@ -31,14 +31,22 @@
             console.log(currUrlQuery)
             
             const currentTime = Date.now()
-            if(isValidUrl(appSchemaUrl))
-            {
-                window.location.href = appSchemaUrl
+            fetch(appSchemaUrl)
+                .then(resp => {
+                    console.log(resp.status == 404);
+                    if(resp.status == 404) {
+                        window.location.href = appStoreUrl
+                        
+                    } else {
+                        window.location.href = appSchemaUrl
+                        
+                    }
+                })
+                .catch(err => {
+                    window.location.href = appStoreUrl
 
-            } else {
-                window.location.href = appStoreUrl
-
-            }
+                })
+            
 
         }
         
