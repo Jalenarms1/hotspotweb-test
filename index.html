@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotSpot</title>
+</head>
+<body>
+
+    <p class="status-text">Loading...</p>
+    
+    <script>
+        window.onload = () => {
+            const currUrlQuery = window.location.search
+            
+            if(currUrlQuery.trim() == "") {
+                document.querySelector(".status-text").textContent = "No data found in the url"
+                return
+            }
+
+            const appSchemaUrl = `hotspotlive://${currUrlQuery.includes("group") ? "open-group" : "open-event"}${currUrlQuery}`
+            console.log(currUrlQuery)
+
+            const currentTime = Date.now()
+            window.location.href = appSchemaUrl
+            setTimeout(() => {
+                const elapsed = Date.now() - currentTime
+                if(elapsed < 1500) {
+                    window.location.href = "https://apps.apple.com/us/app/hotspot/id6444371402"
+                    return
+                }
+            }, 2000)
+        }
+    </script>
+</body>
+</html>
