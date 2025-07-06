@@ -23,18 +23,14 @@
             console.log(currUrlQuery)
 
             const currentTime = Date.now()
-            try {
-                setTimeout(() => {
-                    new URL(appSchemaUrl)
-                    window.location.href = appSchemaUrl
-
-                }, 1000)
-            }
-            catch {
-                window.location.href = appStoreUrl
-
-            }
-            
+            window.location.href = appSchemaUrl
+            setTimeout(() => {
+                const elapsed = Date.now() - currentTime
+                if(elapsed < 1500) {
+                    window.location.href = appStoreUrl
+                    return
+                }
+            }, 2000)
         }
     </script>
 </body>
