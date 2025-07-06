@@ -17,11 +17,16 @@
         const appStoreUrl = "https://apps.apple.com/us/app/hotspot/id6444371402";
 
         // Try to open app
-        window.location = appSchemaUrl;
+        try {
+            window.location = appSchemaUrl;
+            
+        }
+        catch {
+            setTimeout(() => {
+                window.location = appStoreUrl;
+            }, 1000);
 
-        setTimeout(() => {
-            window.location = appStoreUrl;
-        }, 1000);
+        }
     };
 </script>
 </body>
